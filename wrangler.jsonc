@@ -1,0 +1,11 @@
+{
+  "name": "shomo-ventures-site",
+  "compatibility_date": "2024-11-28",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
