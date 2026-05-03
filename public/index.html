@@ -168,6 +168,20 @@
             transform: translateY(-2px);
         }
 
+        /* Status Badge Styling */
+        .status-badge {
+            display: inline-block;
+            background-color: var(--bg-color);
+            color: var(--primary-dark);
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid #cbd5e1;
+        }
+
         /* Properties View Specifics */
         #properties-view {
             max-width: 1200px;
@@ -456,11 +470,31 @@
             h1 { font-size: 2.2rem; }
             .logo-large { max-width: 280px; }
             
+            /* Stacking interactive cover for mobile */
             .interactive-cover {
-                min-height: 350px;
+                flex-direction: column;
+                min-height: auto;
             }
+            .wordmark-wrapper {
+                position: relative;
+                opacity: 1;
+                transform: scale(1);
+                order: 1;
+                padding: 2rem 1rem;
+            }
+            .cover-photo {
+                position: relative;
+                opacity: 1;
+                transform: scale(1);
+                height: 250px;
+                order: 2;
+            }
+            .hover-hint {
+                display: none; /* Hide hint on mobile */
+            }
+
             .property-wordmark-large {
-                max-width: 320px;
+                max-width: 300px;
             }
             
             .details-content {
@@ -522,19 +556,19 @@
             <!-- Property Card: No Boundaries -->
             <div class="property-card">
                 <div class="interactive-cover" onclick="viewPropertyDetails('no-boundaries')">
-                    <!-- Background Image that appears on hover -->
+                    <!-- Background Image that appears on hover (or stays visible on mobile) -->
                     <img src="properties/no_boundaries/no_boundaries_cover.png" alt="No Boundaries Property" class="cover-photo">
                     
-                    <!-- SVG Wordmark that is visible by default -->
+                    <!-- SVG Wordmark that is visible by default (or stacked on mobile) -->
                     <div class="wordmark-wrapper">
                         <img src="properties/no_boundaries/no_boundaries_wordmark.svg" alt="No Boundaries: Life on Lake Murray" class="property-wordmark-large">
-                        <span class="hover-hint">Hover to explore</span>
+                        <span class="hover-hint">Hover to explore • Click for details</span>
                     </div>
                 </div>
                 
                 <div class="property-info">
                     <p class="property-description">Life on Lake Murray, where anything is possible! Discover a stunning lakeside retreat with no boundaries.</p>
-                    <a href="mailto:stephanie@shomoventuresllc.com?subject=Inquiry about 'No Boundaries' Property" class="contact-btn">Inquire About This Property</a>
+                    <div class="status-badge">Currently Rented</div>
                 </div>
             </div>
         </div>
@@ -596,9 +630,9 @@
 
                     <div class="details-sidebar">
                         <div class="contact-card">
-                            <h3>Interested?</h3>
-                            <p>Get in touch with us to learn more about this property or schedule a viewing.</p>
-                            <a href="mailto:stephanie@shomoventuresllc.com?subject=Inquiry about 127 Dallas Dr (No Boundaries)" class="contact-btn">Email Us</a>
+                            <h3>Future Availability</h3>
+                            <p>This property is currently rented. Get in touch to be notified of future availability or schedule a viewing.</p>
+                            <a href="mailto:stephanie@shomoventuresllc.com?subject=Future Availability Inquiry: 127 Dallas Dr (No Boundaries)" class="contact-btn">Join Waitlist</a>
                         </div>
                     </div>
                 </div>
