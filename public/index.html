@@ -32,6 +32,11 @@
             flex-direction: column;
         }
 
+        /* Mobile/Desktop Visibility Toggle */
+        .mobile-only { 
+            display: none !important; 
+        }
+
         /* Navigation Styles */
         .navbar {
             display: flex;
@@ -464,6 +469,9 @@
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
+            .mobile-only { display: block !important; }
+            .desktop-only { display: none !important; }
+
             .navbar {
                 flex-direction: column;
                 gap: 1.5rem;
@@ -489,8 +497,9 @@
                 position: relative;
                 opacity: 1;
                 transform: scale(1);
-                height: 250px;
+                height: 400px; /* Increased for portrait format */
                 order: 2;
+                width: 100%;
             }
             .hover-hint {
                 display: none; /* Hide hint on mobile */
@@ -504,7 +513,7 @@
                 grid-template-columns: 1fr;
             }
             .image-gallery img {
-                height: 350px;
+                height: 400px; /* Increased for portrait format */
                 min-width: 90%;
             }
             .specs-grid {
@@ -560,7 +569,8 @@
             <div class="property-card">
                 <div class="interactive-cover" onclick="viewPropertyDetails('no-boundaries')">
                     <!-- Background Image that appears on hover (or stays visible on mobile) -->
-                    <img src="properties/no_boundaries/no_boundaries_cover.png" alt="No Boundaries Property" class="cover-photo">
+                    <img src="properties/no_boundaries/portrait_mobile.jpg" alt="No Boundaries Property" class="cover-photo mobile-only">
+                    <img src="properties/no_boundaries/no_boundaries_cover.png" alt="No Boundaries Property" class="cover-photo desktop-only">
                     
                     <!-- SVG Wordmark that is visible by default (or stacked on mobile) -->
                     <div class="wordmark-wrapper">
@@ -587,7 +597,8 @@
 
                 <!-- Image Gallery (Horizontal Scroll) -->
                 <div class="image-gallery">
-                    <img src="properties/no_boundaries/no_boundaries_cover.png" alt="No Boundaries Cover">
+                    <img src="properties/no_boundaries/portrait_mobile.jpg" alt="No Boundaries Cover" class="mobile-only">
+                    <img src="properties/no_boundaries/no_boundaries_cover.png" alt="No Boundaries Cover" class="desktop-only">
                     <img src="properties/no_boundaries/IMG_5155.jpeg" alt="No Boundaries View 1">
                     <img src="properties/no_boundaries/IMG_5157.jpeg" alt="No Boundaries View 2">
                 </div>
