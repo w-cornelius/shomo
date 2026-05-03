@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -107,7 +108,7 @@
             flex-direction: column;
         }
 
-        /* Home View Specifics (Original Centered Layout) */
+        /* Home View Specifics */
         #home-view {
             flex: 1;
             justify-content: center;
@@ -116,7 +117,7 @@
         }
 
         .home-container {
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
         }
 
@@ -148,31 +149,54 @@
         }
 
         p.message {
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.8;
             color: #555;
-            max-width: 400px;
+            max-width: 500px;
             margin: 0 auto 2rem auto;
         }
 
-        /* Contact Button Styling */
-        .contact-btn {
+        /* Button Styles */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .contact-btn, .secondary-btn {
             display: inline-block;
             text-decoration: none;
-            background-color: var(--primary-dark);
-            color: white;
             padding: 12px 30px;
             border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
             font-weight: 600;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            border: 2px solid var(--primary-dark);
             cursor: pointer;
+            border: 2px solid var(--primary-dark);
+        }
+
+        .contact-btn {
+            background-color: var(--primary-dark);
+            color: white;
         }
 
         .contact-btn:hover {
             background-color: transparent;
             color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: var(--primary-dark);
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--primary-dark);
+            color: white;
             transform: translateY(-2px);
         }
 
@@ -481,6 +505,10 @@
             h1 { font-size: 2.2rem; }
             .logo-large { max-width: 280px; }
             
+            .action-buttons {
+                flex-direction: column;
+            }
+            
             /* Stacking interactive cover for mobile */
             .interactive-cover {
                 flex-direction: column;
@@ -541,20 +569,22 @@
 
     <main class="main-content">
         
-        <!-- HOME VIEW (Your original Coming Soon content) -->
+        <!-- HOME VIEW (Finished Layout) -->
         <div id="home-view" class="view active">
             <div class="home-container">
                 <img src="logo.png" alt="Shomo Ventures LLC" class="logo-large">
                 
-                <h1>Coming Soon</h1>
-                <p class="subtext">Building the Future</p>
+                <h1>Welcome</h1>
+                <p class="subtext">Premium Properties & Investments</p>
                 
                 <p class="message">
-                    Our new website is currently under construction. <br>
-                    Stay tuned for updates.
+                    Discover exceptional residential properties tailored for modern living. We pride ourselves on providing high-quality, beautifully maintained homes in the Lake Murray area and beyond.
                 </p>
 
-                <a href="mailto:stephanie@shomoventuresllc.com" class="contact-btn">Get in Touch</a>
+                <div class="action-buttons">
+                    <button class="contact-btn" onclick="switchTab('properties')">View Properties</button>
+                    <a href="mailto:stephanie@shomoventuresllc.com" class="secondary-btn">Contact Us</a>
+                </div>
             </div>
         </div>
 
@@ -569,7 +599,7 @@
             <div class="property-card">
                 <div class="interactive-cover" onclick="viewPropertyDetails('no-boundaries')">
                     <!-- Background Image that appears on hover (or stays visible on mobile) -->
-                    <img src="properties/no_boundaries/portrait_mobile.png" alt="No Boundaries Property" class="cover-photo mobile-only">
+                    <img src="properties/no_boundaries/portrait_mobile.jpg" alt="No Boundaries Property" class="cover-photo mobile-only">
                     <img src="properties/no_boundaries/no_boundaries_cover.png" alt="No Boundaries Property" class="cover-photo desktop-only">
                     
                     <!-- SVG Wordmark that is visible by default (or stacked on mobile) -->
@@ -597,7 +627,7 @@
 
                 <!-- Image Gallery (Horizontal Scroll) -->
                 <div class="image-gallery">
-                    <img src="properties/no_boundaries/portrait_mobile.png" alt="No Boundaries Cover" class="mobile-only">
+                    <img src="properties/no_boundaries/portrait_mobile.jpg" alt="No Boundaries Cover" class="mobile-only">
                     <img src="properties/no_boundaries/no_boundaries_cover.png" alt="No Boundaries Cover" class="desktop-only">
                     <img src="properties/no_boundaries/IMG_5155.jpeg" alt="No Boundaries View 1">
                     <img src="properties/no_boundaries/IMG_5157.jpeg" alt="No Boundaries View 2">
@@ -692,3 +722,6 @@
     </script>
 </body>
 </html>
+
+
+```
