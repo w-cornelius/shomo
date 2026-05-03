@@ -288,6 +288,163 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Property Details Specifics */
+        .property-details-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--accent-blue);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        
+        .back-btn:hover {
+            color: var(--primary-dark);
+        }
+
+        .details-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .details-wordmark {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .image-gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding-bottom: 1rem;
+            margin-bottom: 3rem;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-blue) #eaeaea;
+        }
+
+        .image-gallery::-webkit-scrollbar {
+            height: 8px;
+        }
+        .image-gallery::-webkit-scrollbar-track {
+            background: #eaeaea;
+            border-radius: 4px;
+        }
+        .image-gallery::-webkit-scrollbar-thumb {
+            background-color: var(--accent-blue);
+            border-radius: 4px;
+        }
+
+        .image-gallery img {
+            height: 500px;
+            min-width: 80%;
+            object-fit: cover;
+            border-radius: 12px;
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            border: 1px solid #eaeaea;
+        }
+
+        .details-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .details-main h2 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .specs-grid {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+            padding: 1.5rem 0;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .spec-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .spec-label {
+            font-size: 0.9rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .description-block h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .description-block p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .description-block ul {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            padding-left: 1.5rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #eaeaea;
+            text-align: center;
+            position: sticky;
+            top: 100px;
+        }
+
+        .contact-card h3 {
+            font-family: 'Oswald', sans-serif;
+            margin-top: 0;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .contact-card .contact-btn {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 1.5rem;
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 768px) {
             .navbar {
@@ -304,6 +461,21 @@
             }
             .property-wordmark-large {
                 max-width: 320px;
+            }
+            
+            .details-content {
+                grid-template-columns: 1fr;
+            }
+            .image-gallery img {
+                height: 350px;
+                min-width: 90%;
+            }
+            .specs-grid {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+            .spec-value {
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -349,7 +521,7 @@
 
             <!-- Property Card: No Boundaries -->
             <div class="property-card">
-                <div class="interactive-cover">
+                <div class="interactive-cover" onclick="viewPropertyDetails('no-boundaries')">
                     <!-- Background Image that appears on hover -->
                     <img src="properties/no_boundaries/no_boundaries_cover.jpg" alt="No Boundaries Property" class="cover-photo">
                     
@@ -363,6 +535,72 @@
                 <div class="property-info">
                     <p class="property-description">Life on Lake Murray, where anything is possible! Discover a stunning lakeside retreat with no boundaries.</p>
                     <a href="mailto:stephanie@shomoventuresllc.com?subject=Inquiry about 'No Boundaries' Property" class="contact-btn">Inquire About This Property</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROPERTY DETAILS VIEW (No Boundaries) -->
+        <div id="property-details-no-boundaries-view" class="view">
+            <div class="property-details-container">
+                <button class="back-btn" onclick="switchTab('properties')">← Back to Properties</button>
+                
+                <div class="details-header">
+                    <img src="properties/no_boundaries/no_boundaries_wordmark.svg" alt="No Boundaries" class="details-wordmark">
+                </div>
+
+                <!-- Image Gallery (Horizontal Scroll) -->
+                <div class="image-gallery">
+                    <img src="properties/no_boundaries/no_boundaries_cover.jpg" alt="No Boundaries Cover">
+                    <img src="properties/no_boundaries/IMG_5155.jpg" alt="No Boundaries View 1">
+                    <img src="properties/no_boundaries/IMG_5157.jpg" alt="No Boundaries View 2">
+                </div>
+
+                <div class="details-content">
+                    <div class="details-main">
+                        <h2>127 Dallas Dr, Chapin, SC 29036</h2>
+                        
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-value">2</span>
+                                <span class="spec-label">Beds</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">1</span>
+                                <span class="spec-label">Bath</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">1,221</span>
+                                <span class="spec-label">Sq Ft</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-value">0.28</span>
+                                <span class="spec-label">Acres</span>
+                            </div>
+                        </div>
+
+                        <div class="description-block">
+                            <h3>About This Home</h3>
+                            <p>Life on Lake Murray, where anything is possible! Discover a stunning lakeside retreat with no boundaries. This single-family home features 2 bedrooms and 1 bathroom, offering 1,221 square feet of comfortable living space.</p>
+                            <p>Built in 1974, the property boasts a classic stucco exterior and sits on a generous 0.28-acre lot. Enjoy the cozy atmosphere provided by the interior fireplace, perfect for relaxing evenings.</p>
+                            
+                            <h3>Key Features</h3>
+                            <ul>
+                                <li><strong>Location:</strong> Chapin, SC (Near Lake Murray)</li>
+                                <li><strong>Property Type:</strong> Single Family Home</li>
+                                <li><strong>Cooling/Heating:</strong> Central</li>
+                                <li><strong>Interior:</strong> Fireplace included</li>
+                                <li><strong>Exterior:</strong> Stucco</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="details-sidebar">
+                        <div class="contact-card">
+                            <h3>Interested?</h3>
+                            <p>Get in touch with us to learn more about this property or schedule a viewing.</p>
+                            <a href="mailto:stephanie@shomoventuresllc.com?subject=Inquiry about 127 Dallas Dr (No Boundaries)" class="contact-btn">Email Us</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -384,10 +622,24 @@
 
             // Show selected view and highlight nav link
             document.getElementById(tabName + '-view').classList.add('active');
-            document.getElementById('nav-' + tabName).classList.add('active');
+            
+            const navLink = document.getElementById('nav-' + tabName);
+            if (navLink) {
+                navLink.classList.add('active');
+            } else {
+                // If it's a sub-page like property details, keep the parent tab highlighted
+                if (tabName.startsWith('property-details')) {
+                    document.getElementById('nav-properties').classList.add('active');
+                }
+            }
             
             // Scroll to top smoothly when switching tabs
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Function to open specific property details
+        function viewPropertyDetails(propertyId) {
+            switchTab('property-details-' + propertyId);
         }
     </script>
 </body>
