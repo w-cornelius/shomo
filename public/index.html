@@ -3,56 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shomo Ventures - Coming Soon</title>
+    <title>Shomo Ventures - Properties</title>
     
-    <!-- Google Fonts to match the Logo's aesthetic -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Oswald:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS Variables based on the Logo Colors */
+        /* CSS Variables */
         :root {
-            --primary-dark: #2A3844; /* Dark Blue from "SHOMO" */
-            --accent-blue: #206796; /* Lighter Blue from Roof */
-            --bg-color: #f4f7f9;    /* Very light grey-blue background */
+            --primary-dark: #2A3844; 
+            --accent-blue: #206796; 
+            --bg-color: #f4f7f9;    
         }
 
         body, html {
-            height: 100%;
+            min-height: 100vh;
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-color);
             background: linear-gradient(135deg, #ffffff 0%, #eef5f9 100%);
+            color: var(--primary-dark);
             display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-brand img {
+            height: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-brand img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        /* Main Content Container */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 5%;
+        }
+
+        /* View Switching (Tabs) */
+        .view {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+            width: 100%;
+        }
+
+        .view.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Home View Specifics (Original Centered Layout) */
+        #home-view {
+            flex: 1;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: var(--primary-dark);
         }
 
-        .container {
-            padding: 2rem;
+        .home-container {
             max-width: 600px;
-            width: 90%;
-            animation: fadeIn 1.5s ease-in-out;
+            width: 100%;
         }
 
-        /* Logo Styling */
-        .logo {
+        .logo-large {
             max-width: 350px; 
             width: 100%;
             height: auto;
-            
-            /* REDUCED MARGIN HERE: 
-               Changed from 2rem to 0.5rem to pull text closer. 
-               If it's still too far, you can use a negative number like -1rem */
             margin-bottom: 0.5rem; 
-            
             filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.1));
         }
 
-        /* Text Styling */
         h1 {
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
@@ -92,6 +159,7 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             border: 2px solid var(--primary-dark);
+            cursor: pointer;
         }
 
         .contact-btn:hover {
@@ -100,36 +168,227 @@
             transform: translateY(-2px);
         }
 
-        /* Simple Fade In Animation */
+        /* Properties View Specifics */
+        #properties-view {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .section-header p {
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Property Card */
+        .property-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eaeaea;
+        }
+
+        .interactive-cover {
+            position: relative;
+            width: 100%;
+            min-height: 450px;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-bottom: 1px solid #eaeaea;
+            cursor: pointer;
+        }
+
+        .cover-photo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            z-index: 1;
+        }
+
+        .wordmark-wrapper {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .property-wordmark-large {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+        }
+        
+        .hover-hint {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-blue);
+            opacity: 0.7;
+            font-weight: 600;
+        }
+
+        .interactive-cover:hover .cover-photo {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .interactive-cover:hover .wordmark-wrapper {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .property-info {
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .property-description {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* Mobile Adjustments */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            
             h1 { font-size: 2.2rem; }
-            .logo { max-width: 280px; }
+            .logo-large { max-width: 280px; }
+            
+            .interactive-cover {
+                min-height: 350px;
+            }
+            .property-wordmark-large {
+                max-width: 320px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Make sure your image file name matches exactly below -->
-        <img src="logo.png" alt="Shomo Ventures LLC" class="logo">
-        
-        <h1>Coming Soon</h1>
-        <p class="subtext">Building the Future</p>
-        
-        <p class="message">
-            Our new website is currently under construction. <br>
-            Stay tuned for updates.
-        </p>
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-brand">
+            <img src="logo.png" alt="Shomo Ventures" onclick="switchTab('home')">
+        </div>
+        <ul class="nav-links">
+            <li><a id="nav-home" class="active" onclick="switchTab('home')">Home</a></li>
+            <li><a id="nav-properties" onclick="switchTab('properties')">Properties</a></li>
+        </ul>
+    </header>
 
-        <!-- Replace with your actual email -->
-        <a href="mailto:stephanie@shomoventuresllc.com" class="contact-btn">Get in Touch</a>
-    </div>
+    <main class="main-content">
+        
+        <!-- HOME VIEW (Your original Coming Soon content) -->
+        <div id="home-view" class="view active">
+            <div class="home-container">
+                <img src="logo.png" alt="Shomo Ventures LLC" class="logo-large">
+                
+                <h1>Coming Soon</h1>
+                <p class="subtext">Building the Future</p>
+                
+                <p class="message">
+                    Our new website is currently under construction. <br>
+                    Stay tuned for updates.
+                </p>
 
+                <a href="mailto:stephanie@shomoventuresllc.com" class="contact-btn">Get in Touch</a>
+            </div>
+        </div>
+
+        <!-- PROPERTIES VIEW -->
+        <div id="properties-view" class="view">
+            <div class="section-header">
+                <h2>Our Properties</h2>
+                <p>Discover our featured listings</p>
+            </div>
+
+            <!-- Property Card: No Boundaries -->
+            <div class="property-card">
+                <div class="interactive-cover">
+                    <!-- Background Image that appears on hover -->
+                    <img src="properties/no_boundaries/no_boundaries_cover.jpg" alt="No Boundaries Property" class="cover-photo">
+                    
+                    <!-- SVG Wordmark that is visible by default -->
+                    <div class="wordmark-wrapper">
+                        <img src="properties/no_boundaries/no_boundaries_wordmark.svg" alt="No Boundaries: Life on Lake Murray" class="property-wordmark-large">
+                        <span class="hover-hint">Hover to explore</span>
+                    </div>
+                </div>
+                
+                <div class="property-info">
+                    <p class="property-description">Life on Lake Murray, where anything is possible! Discover a stunning lakeside retreat with no boundaries.</p>
+                    <a href="mailto:stephanie@shomoventuresllc.com?subject=Inquiry about 'No Boundaries' Property" class="contact-btn">Inquire About This Property</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Simple script to handle tab switching
+        function switchTab(tabName) {
+            // Hide all views
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            // Remove active state from nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected view and highlight nav link
+            document.getElementById(tabName + '-view').classList.add('active');
+            document.getElementById('nav-' + tabName).classList.add('active');
+            
+            // Scroll to top smoothly when switching tabs
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
